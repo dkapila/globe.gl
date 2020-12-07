@@ -173,7 +173,7 @@ var three = window.THREE ? window.THREE // Prefer consumption from global THREE,
 // Expose config from ThreeGlobe
 
 var bindGlobe = linkKapsule('globe', ThreeGlobe__default['default']);
-var linkedGlobeProps = Object.assign.apply(Object, _toConsumableArray(['globeImageUrl', 'bumpImageUrl', 'showAtmosphere', 'showGraticules', 'pointsData', 'pointLat', 'pointLng', 'pointColor', 'pointAltitude', 'pointRadius', 'pointResolution', 'pointsMerge', 'pointsTransitionDuration', 'arcsData', 'arcStartLat', 'arcStartLng', 'arcEndLat', 'arcEndLng', 'arcColor', 'arcAltitude', 'arcAltitudeAutoScale', 'arcStroke', 'arcCurveResolution', 'arcCircularResolution', 'arcDashLength', 'arcDashGap', 'arcDashInitialGap', 'arcDashAnimateTime', 'arcsTransitionDuration', 'polygonsData', 'polygonGeoJsonGeometry', 'polygonCapColor', 'polygonSideColor', 'polygonStrokeColor', 'polygonAltitude', 'polygonCapCurvatureResolution', 'polygonsTransitionDuration', 'pathsData', 'pathPoints', 'pathPointLat', 'pathPointLng', 'pathPointAlt', 'pathResolution', 'pathColor', 'pathStroke', 'pathDashLength', 'pathDashGap', 'pathDashInitialGap', 'pathDashAnimateTime', 'pathTransitionDuration', 'hexBinPointsData', 'hexBinPointLat', 'hexBinPointLng', 'hexBinPointWeight', 'hexBinResolution', 'hexMargin', 'hexTopCurvatureResolution', 'hexTopColor', 'hexSideColor', 'hexAltitude', 'hexBinMerge', 'hexTransitionDuration', 'hexPolygonsData', 'hexPolygonGeoJsonGeometry', 'hexPolygonColor', 'hexPolygonAltitude', 'hexPolygonResolution', 'hexPolygonMargin', 'hexPolygonCurvatureResolution', 'hexPolygonsTransitionDuration', 'labelsData', 'labelLat', 'labelLng', 'labelAltitude', 'labelRotation', 'labelText', 'labelSize', 'labelTypeFace', 'labelColor', 'labelResolution', 'labelIncludeDot', 'labelDotRadius', 'labelDotOrientation', 'labelsTransitionDuration', 'customLayerData', 'customThreeObject', 'customThreeObjectUpdate'].map(function (p) {
+var linkedGlobeProps = Object.assign.apply(Object, _toConsumableArray(['globeImageUrl', 'bumpImageUrl', 'showAtmosphere', 'showGraticules', 'pointsData', 'pointLat', 'pointLng', 'pointColor', 'pointAltitude', 'pointRadius', 'pointResolution', 'pointsMerge', 'pointsTransitionDuration', 'polygonsData', 'polygonGeoJsonGeometry', 'polygonCapColor', 'polygonSideColor', 'polygonStrokeColor', 'polygonAltitude', 'polygonCapCurvatureResolution', 'polygonsTransitionDuration', 'labelsData', 'labelLat', 'labelLng', 'labelAltitude', 'labelRotation', 'labelText', 'labelSize', 'labelTypeFace', 'labelColor', 'labelResolution', 'labelIncludeDot', 'labelDotRadius', 'labelDotOrientation', 'labelsTransitionDuration', 'customLayerData', 'customThreeObject', 'customThreeObjectUpdate'].map(function (p) {
   return _defineProperty({}, p, bindGlobe.linkProp(p));
 })));
 var linkedGlobeMethods = Object.assign.apply(Object, _toConsumableArray(['globeMaterial', 'getCoords', 'toGeoCoords'].map(function (p) {
@@ -218,22 +218,6 @@ var globe = Kapsule__default['default']({
       "default": function _default() {},
       triggerUpdate: false
     },
-    arcLabel: {
-      "default": 'name',
-      triggerUpdate: false
-    },
-    onArcClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onArcRightClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onArcHover: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
     polygonLabel: {
       "default": 'name',
       triggerUpdate: false
@@ -247,52 +231,6 @@ var globe = Kapsule__default['default']({
       triggerUpdate: false
     },
     onPolygonHover: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    pathLabel: {
-      "default": 'name',
-      triggerUpdate: false
-    },
-    onPathClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onPathRightClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onPathHover: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    hexLabel: {
-      triggerUpdate: false
-    },
-    onHexClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onHexRightClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onHexHover: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    hexPolygonLabel: {
-      triggerUpdate: false
-    },
-    onHexPolygonClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onHexPolygonRightClick: {
-      "default": function _default() {},
-      triggerUpdate: false
-    },
-    onHexPolygonHover: {
       "default": function _default() {},
       triggerUpdate: false
     },
@@ -447,11 +385,7 @@ var globe = Kapsule__default['default']({
     _destructor: function _destructor() {
       this.pauseAnimation();
       this.pointsData([]);
-      this.arcsData([]);
       this.polygonsData([]);
-      this.pathsData([]);
-      this.hexBinPointsData([]);
-      this.hexPolygonsData([]);
       this.labelsData([]);
       this.customLayerData([]);
     }
@@ -529,20 +463,8 @@ var globe = Kapsule__default['default']({
       point: function point(d) {
         return d;
       },
-      arc: function arc(d) {
-        return d;
-      },
       polygon: function polygon(d) {
         return d.data;
-      },
-      path: function path(d) {
-        return d;
-      },
-      hexbin: function hexbin(d) {
-        return d;
-      },
-      hexPolygon: function hexPolygon(d) {
-        return d;
       },
       label: function label(d) {
         return d;
@@ -565,11 +487,7 @@ var globe = Kapsule__default['default']({
     }).lineHoverPrecision(0.2).tooltipContent(function (obj) {
       var objAccessors = {
         point: state.pointLabel,
-        arc: state.arcLabel,
         polygon: state.polygonLabel,
-        path: state.pathLabel,
-        hexbin: state.hexLabel,
-        hexPolygon: state.hexPolygonLabel,
         label: state.labelLabel,
         custom: state.customLayerLabel
       };
@@ -580,11 +498,7 @@ var globe = Kapsule__default['default']({
       // Update tooltip and trigger onHover events
       var hoverObjFns = {
         point: state.onPointHover,
-        arc: state.onArcHover,
         polygon: state.onPolygonHover,
-        path: state.onPathHover,
-        hexbin: state.onHexHover,
-        hexPolygon: state.onHexPolygonHover,
         label: state.onLabelHover,
         custom: state.onCustomLayerHover
       };
@@ -617,11 +531,7 @@ var globe = Kapsule__default['default']({
       var objFns = {
         globe: state.onGlobeClick,
         point: state.onPointClick,
-        arc: state.onArcClick,
         polygon: state.onPolygonClick,
-        path: state.onPathClick,
-        hexbin: state.onHexClick,
-        hexPolygon: state.onHexPolygonClick,
         label: state.onLabelClick,
         custom: state.onCustomLayerClick
       };
@@ -653,11 +563,7 @@ var globe = Kapsule__default['default']({
       var objFns = {
         globe: state.onGlobeRightClick,
         point: state.onPointRightClick,
-        arc: state.onArcRightClick,
         polygon: state.onPolygonRightClick,
-        path: state.onPathRightClick,
-        hexbin: state.onHexRightClick,
-        hexPolygon: state.onHexPolygonRightClick,
         label: state.onLabelRightClick,
         custom: state.onCustomLayerRightClick
       };

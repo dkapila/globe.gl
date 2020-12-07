@@ -31,22 +31,6 @@ const linkedGlobeProps = Object.assign(...[
   'pointResolution',
   'pointsMerge',
   'pointsTransitionDuration',
-  'arcsData',
-  'arcStartLat',
-  'arcStartLng',
-  'arcEndLat',
-  'arcEndLng',
-  'arcColor',
-  'arcAltitude',
-  'arcAltitudeAutoScale',
-  'arcStroke',
-  'arcCurveResolution',
-  'arcCircularResolution',
-  'arcDashLength',
-  'arcDashGap',
-  'arcDashInitialGap',
-  'arcDashAnimateTime',
-  'arcsTransitionDuration',
   'polygonsData',
   'polygonGeoJsonGeometry',
   'polygonCapColor',
@@ -55,39 +39,6 @@ const linkedGlobeProps = Object.assign(...[
   'polygonAltitude',
   'polygonCapCurvatureResolution',
   'polygonsTransitionDuration',
-  'pathsData',
-  'pathPoints',
-  'pathPointLat',
-  'pathPointLng',
-  'pathPointAlt',
-  'pathResolution',
-  'pathColor',
-  'pathStroke',
-  'pathDashLength',
-  'pathDashGap',
-  'pathDashInitialGap',
-  'pathDashAnimateTime',
-  'pathTransitionDuration',
-  'hexBinPointsData',
-  'hexBinPointLat',
-  'hexBinPointLng',
-  'hexBinPointWeight',
-  'hexBinResolution',
-  'hexMargin',
-  'hexTopCurvatureResolution',
-  'hexTopColor',
-  'hexSideColor',
-  'hexAltitude',
-  'hexBinMerge',
-  'hexTransitionDuration',
-  'hexPolygonsData',
-  'hexPolygonGeoJsonGeometry',
-  'hexPolygonColor',
-  'hexPolygonAltitude',
-  'hexPolygonResolution',
-  'hexPolygonMargin',
-  'hexPolygonCurvatureResolution',
-  'hexPolygonsTransitionDuration',
   'labelsData',
   'labelLat',
   'labelLng',
@@ -139,26 +90,10 @@ export default Kapsule({
     onPointClick: { default: () => {}, triggerUpdate: false },
     onPointRightClick: { default: () => {}, triggerUpdate: false },
     onPointHover: { default: () => {}, triggerUpdate: false },
-    arcLabel: { default: 'name', triggerUpdate: false },
-    onArcClick: { default: () => {}, triggerUpdate: false },
-    onArcRightClick: { default: () => {}, triggerUpdate: false },
-    onArcHover: { default: () => {}, triggerUpdate: false },
     polygonLabel: { default: 'name', triggerUpdate: false },
     onPolygonClick: { default: () => {}, triggerUpdate: false },
     onPolygonRightClick: { default: () => {}, triggerUpdate: false },
     onPolygonHover: { default: () => {}, triggerUpdate: false },
-    pathLabel: { default: 'name', triggerUpdate: false },
-    onPathClick: { default: () => {}, triggerUpdate: false },
-    onPathRightClick: { default: () => {}, triggerUpdate: false },
-    onPathHover: { default: () => {}, triggerUpdate: false },
-    hexLabel: { triggerUpdate: false },
-    onHexClick: { default: () => {}, triggerUpdate: false },
-    onHexRightClick: { default: () => {}, triggerUpdate: false },
-    onHexHover: { default: () => {}, triggerUpdate: false },
-    hexPolygonLabel: { triggerUpdate: false },
-    onHexPolygonClick: { default: () => {}, triggerUpdate: false },
-    onHexPolygonRightClick: { default: () => {}, triggerUpdate: false },
-    onHexPolygonHover: { default: () => {}, triggerUpdate: false },
     labelLabel: { triggerUpdate: false },
     onLabelClick: { default: () => {}, triggerUpdate: false },
     onLabelRightClick: { default: () => {}, triggerUpdate: false },
@@ -248,11 +183,7 @@ export default Kapsule({
     _destructor: function() {
       this.pauseAnimation();
       this.pointsData([]);
-      this.arcsData([]);
       this.polygonsData([]);
-      this.pathsData([]);
-      this.hexBinPointsData([]);
-      this.hexPolygonsData([]);
       this.labelsData([]);
       this.customLayerData([]);
     },
@@ -316,11 +247,7 @@ export default Kapsule({
 
     const dataAccessors = {
       point: d => d,
-      arc: d => d,
       polygon: d => d.data,
-      path: d => d,
-      hexbin: d => d,
-      hexPolygon: d => d,
       label: d => d,
       custom: d => d
     };
@@ -343,11 +270,7 @@ export default Kapsule({
       .tooltipContent(obj => {
         const objAccessors = {
           point: state.pointLabel,
-          arc: state.arcLabel,
           polygon: state.polygonLabel,
-          path: state.pathLabel,
-          hexbin: state.hexLabel,
-          hexPolygon: state.hexPolygonLabel,
           label: state.labelLabel,
           custom: state.customLayerLabel
         };
@@ -363,11 +286,7 @@ export default Kapsule({
         // Update tooltip and trigger onHover events
         const hoverObjFns = {
           point: state.onPointHover,
-          arc: state.onArcHover,
           polygon: state.onPolygonHover,
-          path: state.onPathHover,
-          hexbin: state.onHexHover,
-          hexPolygon: state.onHexPolygonHover,
           label: state.onLabelHover,
           custom: state.onCustomLayerHover
         };
@@ -401,11 +320,7 @@ export default Kapsule({
         const objFns = {
           globe: state.onGlobeClick,
           point: state.onPointClick,
-          arc: state.onArcClick,
           polygon: state.onPolygonClick,
-          path: state.onPathClick,
-          hexbin: state.onHexClick,
-          hexPolygon: state.onHexPolygonClick,
           label: state.onLabelClick,
           custom: state.onCustomLayerClick
         };
@@ -430,11 +345,7 @@ export default Kapsule({
         const objFns = {
           globe: state.onGlobeRightClick,
           point: state.onPointRightClick,
-          arc: state.onArcRightClick,
           polygon: state.onPolygonRightClick,
-          path: state.onPathRightClick,
-          hexbin: state.onHexRightClick,
-          hexPolygon: state.onHexPolygonRightClick,
           label: state.onLabelRightClick,
           custom: state.onCustomLayerRightClick
         };
