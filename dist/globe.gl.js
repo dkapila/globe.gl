@@ -47147,36 +47147,6 @@
   };
   earcut_1.default = _default;
 
-  function extent(values, valueof) {
-    let min;
-    let max;
-    if (valueof === undefined) {
-      for (const value of values) {
-        if (value != null) {
-          if (min === undefined) {
-            if (value >= value) min = max = value;
-          } else {
-            if (min > value) min = value;
-            if (max < value) max = value;
-          }
-        }
-      }
-    } else {
-      let index = -1;
-      for (let value of values) {
-        if ((value = valueof(value, ++index, values)) != null) {
-          if (min === undefined) {
-            if (value >= value) min = max = value;
-          } else {
-            if (min > value) min = value;
-            if (max < value) max = value;
-          }
-        }
-      }
-    }
-    return [min, max];
-  }
-
   // https://github.com/python/cpython/blob/a74eea238f5baba15797e2e8b570d153bc8690a7/Modules/mathmodule.c#L1423
   class Adder {
     constructor() {
@@ -54009,6 +53979,36 @@
         .clipAngle(142);
   }
 
+  function extent(values, valueof) {
+    let min;
+    let max;
+    if (valueof === undefined) {
+      for (const value of values) {
+        if (value != null) {
+          if (min === undefined) {
+            if (value >= value) min = max = value;
+          } else {
+            if (min > value) min = value;
+            if (max < value) max = value;
+          }
+        }
+      }
+    } else {
+      let index = -1;
+      for (let value of values) {
+        if ((value = valueof(value, ++index, values)) != null) {
+          if (min === undefined) {
+            if (value >= value) min = max = value;
+          } else {
+            if (min > value) min = value;
+            if (max < value) max = value;
+          }
+        }
+      }
+    }
+    return [min, max];
+  }
+
   var pi$2 = Math.PI;
   var halfPi$2 = pi$2 / 2;
 
@@ -57073,13 +57073,7 @@
         state.scene.visible = true;
       };
 
-      waitForGlobeReady ? state.globeLayer.onReady(initGlobe) : initGlobe(); // run tween updates
-
-      (function onFrame() {
-        requestAnimationFrame(onFrame);
-        exports$1.update();
-      })(); // IIFE
-
+      waitForGlobeReady ? state.globeLayer.onReady(initGlobe) : initGlobe();
     },
     update: function update(state) {}
   });
